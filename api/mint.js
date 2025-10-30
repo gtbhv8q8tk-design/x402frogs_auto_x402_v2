@@ -1,26 +1,21 @@
-require('dotenv').config();
-
-module.exports = async (req, res) => {
-  const publicUrl = process.env.PUBLIC_URL || `https://${req.headers.host}`;
-
-  const payload = {
+export default function handler(req, res) {
+  res.status(402).json({
     x402Version: 1,
-    type: "x402",
-    chainId: 8453,                  // Base Mainnet
-    id: "offer-1",                  // Унікальний ID оферу
-    payment: {
-      currency: "USDC",
-      tokenAddress: process.env.USDC_ADDRESS.toLowerCase(), // lowercase
-      amount: "1000000",            // 1 USDC у microUSDC (6 decimals) як STRING
-      receiver: process.env.TREASURY.toLowerCase()
-    },
-    resource: `${publicUrl}/api/mint?id=1`,
-    metadata: {
-      name: "x402frogs #1",
-      description: "Mint x402frogs collectible for 1 USDC",
-      image: "https://ipfs.io/ipfs/QmepBFK4YT8KwB4GNg3pwBdtDJy8kr8RtPgURTBdqt8fV8/1.png"
-    }
-  };
-
-  return res.status(402).json(payload);
-};
+    resources: [
+      {
+        id: "1",
+        title: "Mint Frog NFT",
+        description: "Pay 1 USDC to mint a Frog NFT",
+        media: "https://ipfs.io/ipfs/QmepBFK4YT8KwB4GNg3pwBdtDJy8kr8RtPgURTBdqt8fV8/1.png",
+        accepts: [
+          {
+            chain: "base",
+            currency: "USDC",
+            amount: "1000000", // 1 USDC = 1_000_000 (6 decimals)
+            receiver: "0x63AcAd363c60178e0153268a272876197770bFEf"
+          }
+        ]
+      }
+    ]
+  });
+}
