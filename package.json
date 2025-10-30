@@ -1,0 +1,10 @@
+{
+  "name": "x402frogs_auto_x402_v2",
+  "version": "1.0.0",
+  "description": "x402frogs_auto_x402_v2 with replay protection",
+  "main": "api/mint.js",
+  "dependencies": {
+    "ethers": "^5.7.2",
+    "dotenv": "^16.0.3"
+  }
+}
