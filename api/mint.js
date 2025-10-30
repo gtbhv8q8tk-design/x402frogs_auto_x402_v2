@@ -6,12 +6,12 @@ module.exports = async (req, res) => {
   const payload = {
     x402Version: 1,
     type: "x402",
-    chainId: 8453,
-    id: "offer-1",
+    chainId: 8453,                  // Base Mainnet
+    id: "offer-1",                  // Унікальний ID оферу
     payment: {
       currency: "USDC",
-      tokenAddress: process.env.USDC_ADDRESS.toLowerCase(), // ✅ lowercase
-      amount: "1000000", // ✅ 1 USDC у microUSDC (6 decimals) як STRING
+      tokenAddress: process.env.USDC_ADDRESS.toLowerCase(), // lowercase
+      amount: "1000000",            // 1 USDC у microUSDC (6 decimals) як STRING
       receiver: process.env.TREASURY.toLowerCase()
     },
     resource: `${publicUrl}/api/mint?id=1`,
