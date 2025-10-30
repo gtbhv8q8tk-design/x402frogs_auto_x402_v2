@@ -9,12 +9,12 @@ const ERC20_ABI = [
 module.exports = async (req, res) => {
   try {
     if (req.method !== 'POST') {
-      return res.status(405).json({
-        x402Version: 1,
-        id: "offer-1",
-        status: "error",
-        error: "Method not allowed"
-      });
+      return res.json({
+  x402Version: 1,
+  id: "offer-1",
+  status: "success",
+  mintTx: receiptMint.transactionHash
+});
     }
 
     const { txHash, buyer } = req.body;
@@ -103,3 +103,4 @@ module.exports = async (req, res) => {
     });
   }
 };
+
