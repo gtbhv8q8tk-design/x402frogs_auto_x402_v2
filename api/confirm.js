@@ -47,7 +47,7 @@ module.exports = async (req, res) => {
       });
     }
 
-    // Перевіряємо оплату USDC
+    // Перевірка USDC переказу
     const iface = new ethers.utils.Interface(ERC20_ABI);
     let paid = false;
     for (const log of receipt.logs) {
@@ -76,7 +76,7 @@ module.exports = async (req, res) => {
       });
     }
 
-    // Мінтимо NFT
+    // Мінт
     const signer = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
     const collection = new ethers.Contract(
       process.env.COLLECTION_ADDRESS,
