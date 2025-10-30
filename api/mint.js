@@ -1,10 +1,13 @@
 require('dotenv').config();
+
 module.exports = async (req, res) => {
   const publicUrl = process.env.PUBLIC_URL || `https://${req.headers.host}`;
   const payload = {
-    version: "1",
+    // додали правильну версію
+    x402Version: "1",
     type: "x402",
-    chainId: 8453,
+
+    chainId: 8453, // Base
     payment: {
       currency: "USDC",
       tokenAddress: process.env.USDC_ADDRESS,
@@ -18,5 +21,6 @@ module.exports = async (req, res) => {
       image: "https://ipfs.io/ipfs/QmepBFK4YT8KwB4GNg3pwBdtDJy8kr8RtPgURTBdqt8fV8/1.png"
     }
   };
+
   return res.status(402).json(payload);
 };
