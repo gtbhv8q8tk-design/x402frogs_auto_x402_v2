@@ -2,12 +2,11 @@ require('dotenv').config();
 
 module.exports = async (req, res) => {
   const publicUrl = process.env.PUBLIC_URL || `https://${req.headers.host}`;
-  const payload = {
-    // додали правильну версію
-    x402Version: "1",
-    type: "x402",
 
-    chainId: 8453, // Base
+  const payload = {
+    x402Version: 1,              // ✅ число, а не рядок
+    type: "x402",
+    chainId: 8453,               // Base Mainnet
     payment: {
       currency: "USDC",
       tokenAddress: process.env.USDC_ADDRESS,
