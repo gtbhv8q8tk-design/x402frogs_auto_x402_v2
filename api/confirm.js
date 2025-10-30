@@ -9,12 +9,12 @@ const ERC20_ABI = [
 module.exports = async (req, res) => {
   try {
     if (req.method !== 'POST') {
-      return res.json({
-  x402Version: 1,
-  id: "offer-1",
-  status: "success",
-  mintTx: receiptMint.transactionHash
-});
+      return res.status(405).json({
+        x402Version: 1,
+        id: "offer-1",
+        status: "error",
+        error: "Method not allowed"
+      });
     }
 
     const { txHash, buyer } = req.body;
@@ -69,12 +69,11 @@ module.exports = async (req, res) => {
 
     if (!paid) {
       return res.status(402).json({
-  x402Version: 1,
-  id: "offer-1",
-  status: "error",
-  error: "Payment not detected"
-});
-
+        x402Version: 1,
+        id: "offer-1",
+        status: "error",
+        error: "Payment not detected"
+      });
     }
 
     // Мінт
@@ -104,5 +103,3 @@ module.exports = async (req, res) => {
     });
   }
 };
-
-
