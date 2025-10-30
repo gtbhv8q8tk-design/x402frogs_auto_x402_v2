@@ -69,11 +69,12 @@ module.exports = async (req, res) => {
 
     if (!paid) {
       return res.status(402).json({
-        x402Version: 1,
-        id: "offer-1",
-        status: "error",
-        error: "Payment not detected"
-      });
+  x402Version: 1,
+  id: "offer-1",
+  status: "error",
+  error: "Payment not detected"
+});
+
     }
 
     // Мінт
@@ -103,4 +104,5 @@ module.exports = async (req, res) => {
     });
   }
 };
+
 
