@@ -4,13 +4,14 @@ module.exports = async (req, res) => {
   const publicUrl = process.env.PUBLIC_URL || `https://${req.headers.host}`;
 
   const payload = {
-    x402Version: 1,              // ✅ число, а не рядок
+    x402Version: 1,
     type: "x402",
-    chainId: 8453,               // Base Mainnet
+    chainId: 8453,
+    id: "offer-1",   // ✅ додано унікальний ID
     payment: {
       currency: "USDC",
       tokenAddress: process.env.USDC_ADDRESS,
-      amount: "1",
+      amount: 1,   // ✅ число, а не строка
       receiver: process.env.TREASURY
     },
     resource: `${publicUrl}/api/mint?id=1`,
